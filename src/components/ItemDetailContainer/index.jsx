@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import ItemDetail from '../ItemDetail';
+import React, { useEffect, useState } from "react";
+import ItemDetail from "../ItemDetail";
 
 function getItems() {
   const myPromise = new Promise((resolve, reject) => {
     const productsList = [
       {
         id: 1,
-        nombre: 'Fideos',
-        precio: '$150',
-        url: './assets/fideos.png'
-      }
+        nombre: "Fideos",
+        precio: "$150",
+        url: "./assets/fideos.png",
+      },
     ];
     setTimeout(() => {
       resolve(productsList);
@@ -19,23 +19,22 @@ function getItems() {
 }
 
 function ItemDetailContainer() {
-
-
-  const [products, setProducts] = useState([]);
-
+  const [oneProduct, setOneProduct] = useState([]);
+  console.log("OneProduct", oneProduct);
   useEffect(() => {
-    getItems()
-      .then(res => {
-        setProducts(res);
-      })
+    getItems().then((res) => {
+      setOneProduct(res);
+    });
   }, []);
-console.log ({products})
+
   return (
-    <div>
-      <ItemDetail items={products}/>
-       
-    </div>
-  )
+    <>
+      {oneProduct.map((product) => {
+        console.log("product in map", product);
+        return <ItemDetail key={product.id} product={product} />;
+      })}
+    </>
+  );
 }
 
-export default ItemDetailContainer
+export default ItemDetailContainer;

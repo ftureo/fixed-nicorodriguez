@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import ItemList from '../ListItem/ListItem';
+import React, { useEffect, useState } from "react";
+import ItemList from "../ItemList/ItemList";
 
 function getProducts() {
   const myPromise = new Promise((resolve, reject) => {
     const productsList = [
       {
         id: 1,
-        nombre: 'Fideos',
-        precio: '$150',
-        url: './assets/fideos.png'
+        nombre: "Fideos",
+        precio: "$150",
+        url: "./assets/fideos.png",
       },
       {
         id: 2,
-        nombre: 'Agnolotti',
-        precio: '$600',
-        url: './assets/Agnolotti.png'
+        nombre: "Agnolotti",
+        precio: "$600",
+        url: "./assets/Agnolotti.png",
       },
       {
         id: 3,
-        nombre: 'Ravioles',
-        precio: '$350',
-        url: './assets/ravioles.png'
-      }
+        nombre: "Ravioles",
+        precio: "$350",
+        url: "./assets/ravioles.png",
+      },
     ];
     setTimeout(() => {
       resolve(productsList);
@@ -31,24 +31,19 @@ function getProducts() {
 }
 
 function ItemListContainer() {
-
-
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    getProducts()
-      .then(res => {
-        setProducts(res);
-      })
+    getProducts().then((res) => {
+      setProducts(res);
+    });
   }, []);
-  console.log({products})
 
   return (
-    <div className='list-item-container'>
+    <div className="list-item-container">
       <ItemList items={products} />
-       
     </div>
-  )
+  );
 }
 
-export default ItemListContainer
+export default ItemListContainer;
